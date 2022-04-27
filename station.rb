@@ -15,7 +15,7 @@ class Station
     @station_name = station
     @trains = []    
     @@all_stations << self
-    register_instance(self.class)
+    register_instance
   end
 
   def train_comes(train)

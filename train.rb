@@ -22,7 +22,7 @@ class Train
     @type = type
     @wagons = []
     @@all_trains << self
-    register_instance(self.class)
+    register_instance
   end
 
   def go(speed)

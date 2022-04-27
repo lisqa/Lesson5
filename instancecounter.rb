@@ -7,17 +7,13 @@ module InstanceCounter
 
   module ClassMethods
     attr_accessor :instances
-
-    def self.start_instance(one_class)
-      one_class.instances ||= 0
-    end
   end
 
   module InstanceMethods
 
-    def register_instance(one_class)
-      ClassMethods.start_instance(one_class)  
-      one_class.instances += 1
+    def register_instance
+      self.class.instances ||= 0  
+      self.class.instances += 1
     end
   end
 end
