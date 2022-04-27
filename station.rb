@@ -1,10 +1,11 @@
+require_relative 'instancecounter'
+
 class Station
- included InstanceCounter
+ include InstanceCounter
 
   attr_reader :trains, :station_name
 
   @@all_stations = []
-  ClassMethods.start_instance(self)
 
   def self.all
     @@all_stations

@@ -1,8 +1,9 @@
+require_relative 'instancecounter'
+
 class Route
   include InstanceCounter
   
   attr_accessor :list_of_stations
-  ClassMethods.start_instance(self)
  
   def initialize(first_station, end_station)
     @list_of_stations = [first_station, end_station]

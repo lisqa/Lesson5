@@ -1,3 +1,6 @@
+require_relative 'instancecounter'
+require_relative 'productcompany'
+
 class Train
   include ProductCompany
   include InstanceCounter
@@ -5,14 +8,13 @@ class Train
   attr_accessor :speed, :number, :type, :wagons, :train_route, :train_station, :instance
   
   @@all_trains = []
-  ClassMethods.start_instance(self)
 
   def self.all
     @@all_trains
   end
 
   def self.find(number)
-    @@all_trains.find { |train| train if train.number == number }
+    @@all_trains.find { |train| train.number == number }
   end
 
   def initialize(number, type)

@@ -1,8 +1,6 @@
 require_relative 'train'
 
-class CargoTrain < Train
-  
-  ClassMethods.start_instance(self)
+class CargoTrain < Train  
   
   def initialize(number, type = "cargo")
     @number = number.to_s 
