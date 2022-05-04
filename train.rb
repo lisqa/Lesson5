@@ -9,6 +9,9 @@ class Train
   
   @@all_trains = []
 
+  TRAIN_NUMBER_FORMAT = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i
+  TRAIN_TYPE = /^(cargo|passenger)$/i
+
   def self.all
     @@all_trains
   end
@@ -20,6 +23,7 @@ class Train
   def initialize(number, type)
     @number = number.to_s 
     @type = type
+    validate!  
     @wagons = []
     @@all_trains << self
     register_instance
@@ -81,5 +85,12 @@ class Train
   
   def station_number(station) 
     station.station_index(@train_route)
+  end
+
+  protected
+
+  def validate!    
+    raise "Number has invalid format" if number !~ TRAIN_NUMBER_FORMAT    
+    raise "Type is not valid" if type !~ TRAIN_TYPE
   end
 end

@@ -5,6 +5,8 @@ class Station
 
   attr_reader :trains, :station_name
 
+  STATION_FORMAT = /^([a-z]|\d){1,}$/i
+
   @@all_stations = []
 
   def self.all
@@ -13,6 +15,7 @@ class Station
 
   def initialize(station)
     @station_name = station
+    validate!
     @trains = []    
     @@all_stations << self
     register_instance
@@ -36,5 +39,11 @@ class Station
 
   def station_index(route) #public хотя не нужен пользователю, но используется в другом классе в открытом методе (вперед/назад поезд)
     route.list_of_stations.index(self)
+  end
+
+  protected
+
+  def validate!    
+    raise "Station name is invalid" if station_name !~ STATION_FORMAT
   end
 end
