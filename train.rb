@@ -1,5 +1,8 @@
 require_relative 'instancecounter'
 require_relative 'productcompany'
+require_relative 'wagon'
+require_relative 'passengerwagon'
+require_relative 'cargowagon'
 
 class Train
   include ProductCompany
@@ -12,8 +15,8 @@ class Train
   TRAIN_NUMBER_FORMAT = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i
   TRAIN_TYPE = /^(cargo|passenger)$/i
 
-  def wagon_block(block)
-    @wagons.each { |wagon| block }
+  def train_block
+    @wagons.each { |wagon| yield(wagon) }
   end
 
   def self.all

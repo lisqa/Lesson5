@@ -35,9 +35,9 @@ traininterface = TrainInterface.new
 c1 = CargoWagon.new(30)
 c1.number = "1"
 c2 = CargoWagon.new(20)
-c1.number = "2"
+c2.number = "2"
 c1.occupy_volume(10)
-puts "occupy #{c1.occupied_volume} и free #{c1.free_volume}"
+#puts "occupy #{c1.occupied_volume} и free #{c1.free_volume}"
 p1 = PassengerWagon.new(25)
 p1.number = "10"
 p2 = PassengerWagon.new(15)
@@ -45,7 +45,7 @@ p2.number = "12"
 p1.occupy_seat
 p1.occupy_seat
 p1.occupy_seat
-puts "occupy #{p1.occupied_seats} и free #{p1.free_seats}"
+#puts "occupy #{p1.occupied_seats} и free #{p1.free_seats}"
 
 tc1 = CargoTrain.new ("12345")
 tp2 = PassengerTrain.new ("67890")
@@ -64,15 +64,12 @@ s2.train_comes(tp2)
 puts "Список станций и поездов на них:"
     Station.all.each { |station| 
       puts "На станции #{station.station_name} находятся поезда: "
-      station.trains.each { |train| puts " Number = #{train.number}, type = #{train.type}, wagons = #{train.wagons.length}"}
+      station.trains.each { |train| puts "TrainNumber = #{train.number}, type = #{train.type}, wagons = #{train.wagons.length}"}
       }
+
 puts "Поезда и вагоны:"
-    Train.all.each { |train| 
-      if train.type == "passenger"
-        puts "У поезда номер #{train.number} есть вагоны: "
-        train.wagons.each { |wagon| puts " Number = #{wagon.number}, occupied seats = #{wagon.occupied_seats}, free seats = #{wagon.free_seats}"}
-      else
-        puts "У поезда номер #{train.number} есть вагоны: "
-        train.wagons.each { |wagon| puts " Number = #{wagon.number}, occupied volume = #{wagon.occupied_volume}, free volume = #{wagon.free_volume}"}
-        end 
-      }
+    
+Train.all.each { |train| 
+  puts "Train number #{train.number}" 
+  train.wagons.each { |wagon| wagon.putswagon(wagon) } 
+}

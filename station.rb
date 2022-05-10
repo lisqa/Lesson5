@@ -9,8 +9,8 @@ class Station
 
   @@all_stations = []
 
-  def train_block(block)
-    @trains.each { |train| block }
+  def station_block
+    @trains.each { |train| yield(train) }
   end
 
   def self.all
