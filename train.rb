@@ -12,6 +12,10 @@ class Train
   TRAIN_NUMBER_FORMAT = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i
   TRAIN_TYPE = /^(cargo|passenger)$/i
 
+  def wagon_block(block)
+    @wagons.each { |wagon| block }
+  end
+
   def self.all
     @@all_trains
   end

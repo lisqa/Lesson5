@@ -9,6 +9,10 @@ class Station
 
   @@all_stations = []
 
+  def train_block(block)
+    @trains.each { |train| block }
+  end
+
   def self.all
     @@all_stations
   end
