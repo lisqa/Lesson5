@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'wagon'
 
 class PassengerWagon < Wagon
@@ -17,6 +19,6 @@ class PassengerWagon < Wagon
   end
 
   def type
-    @type = "passenger"
+    @type = 'passenger'
   end
 end

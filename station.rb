@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require_relative 'instancecounter'
 
 class Station
- include InstanceCounter
+  include InstanceCounter
 
   attr_reader :trains, :station_name
 
-  STATION_FORMAT = /^([a-z]|\d){1,}$/i
+  STATION_FORMAT = /^([a-z]|\d){1,}$/i.freeze
 
   @@all_stations = []
 
-  def station_block
-    @trains.each { |train| yield(train) }
+  def station_block(&block)
+    @trains.each(&block)
   end
 
   def self.all
@@ -20,7 +22,7 @@ class Station
   def initialize(station)
     @station_name = station
     validate!
-    @trains = []    
+    @trains = []
     @@all_stations << self
     register_instance
   end
@@ -30,24 +32,25 @@ class Station
   end
 
   def trains_by(type)
-    @trains.select {|train| type == train.type}    
+    @trains.select { |train| type == train.type }
   end
 
   def count_trains_by(type)
-    self.trains_by(type).length    
+    trains_by(type).length
   end
 
   def train_leaves(train)
     @trains.delete(train)
   end
 
-  def station_index(route) #public хотя не нужен пользователю, но используется в другом классе в открытом методе (вперед/назад поезд)
+  # public хотя не нужен пользователю, но используется в другом классе в открытом методе (вперед/назад поезд)
+  def station_index(route)
     route.list_of_stations.index(self)
   end
 
   protected
 
-  def validate!    
-    raise "Station name is invalid" if station_name !~ STATION_FORMAT
+  def validate!
+    raise 'Station name is invalid' if station_name !~ STATION_FORMAT
   end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'wagon'
 
-class CargoWagon < Wagon 
+class CargoWagon < Wagon
   attr_accessor :occupied_volume
 
   def initialize(volume)
@@ -17,6 +19,6 @@ class CargoWagon < Wagon
   end
 
   def type
-    @type = "cargo"
+    @type = 'cargo'
   end
 end

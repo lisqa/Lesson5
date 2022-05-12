@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'instancecounter'
 
 class Route
   include InstanceCounter
-  
+
   attr_accessor :list_of_stations
- 
+
   def initialize(first_station, end_station)
     @list_of_stations = [first_station, end_station]
     register_instance
@@ -15,8 +17,6 @@ class Route
   end
 
   def remove_station(station)
-    if station != @list_of_stations[0] && station != @list_of_stations[-1]
-      @list_of_stations.delete(station)
-    end
+    @list_of_stations.delete(station) if station != @list_of_stations[0] && station != @list_of_stations[-1]
   end
 end
