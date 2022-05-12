@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'instancecounter'
 require_relative 'productcompany'
 require_relative 'wagon'
@@ -85,9 +83,7 @@ class Train
   end
 
   def next_station
-    if @train_station != @train_route.list_of_stations[-1]
-      @train_route.list_of_stations[station_number(@train_station) + 1]
-    end
+    @train_route.list_of_stations[station_number(@train_station) + 1] if @train_station != @train_route.list_of_stations[-1]
   end
 
   def back_station

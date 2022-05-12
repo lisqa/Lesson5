@@ -1,12 +1,8 @@
-# frozen_string_literal: true
-
 require_relative 'wagon'
 
 class PassengerWagon < Wagon
-  attr_accessor :occupied_seats
-
-  def initialize(seats)
-    @seats = seats.to_i
+  def initialize(options = {})
+    super
     @occupied_seats = 0
   end
 

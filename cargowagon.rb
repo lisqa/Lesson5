@@ -1,12 +1,8 @@
-# frozen_string_literal: true
-
 require_relative 'wagon'
 
 class CargoWagon < Wagon
-  attr_accessor :occupied_volume
-
-  def initialize(volume)
-    @volume = volume.to_i
+  def initialize(options = {})
+    super
     @occupied_volume = 0
   end
 

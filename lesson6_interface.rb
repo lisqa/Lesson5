@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'instancecounter'
 require_relative 'productcompany'
 require_relative 'train'
@@ -24,25 +22,18 @@ class TrainInterface
     type = gets.chomp
     train = Train.new(number, type)
   rescue RuntimeError => e
-    false
     puts e.inspect.to_s
   end
 end
 
-c1 = CargoWagon.new(30)
-c1.number = '1'
-c2 = CargoWagon.new(20)
-c2.number = '2'
+c1 = CargoWagon.new(number: 1, volume: 30)
+c2 = CargoWagon.new(number: 2, volume: 20)
 c1.occupy_volume(10)
-# puts "occupy #{c1.occupied_volume} и free #{c1.free_volume}"
-p1 = PassengerWagon.new(25)
-p1.number = '10'
-p2 = PassengerWagon.new(15)
-p2.number = '12'
+p1 = PassengerWagon.new(number: 10, seats: 25)
+p2 = PassengerWagon.new(number: 12, seats: 15)
 p1.occupy_seat
 p1.occupy_seat
 p1.occupy_seat
-# puts "occupy #{p1.occupied_seats} и free #{p1.free_seats}"
 
 tc1 = CargoTrain.new('12345')
 tp2 = PassengerTrain.new('67890')
