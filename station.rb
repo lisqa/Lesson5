@@ -1,11 +1,21 @@
 require_relative 'instancecounter'
+require_relative 'accessors'
+require_relative 'validation'
 
 class Station
   include InstanceCounter
+  include Accessors
+  extend Accessors
+  include Validation
 
   attr_reader :trains, :station_name
 
   STATION_FORMAT = /^([a-z]|\d){1,}$/i.freeze
+
+  validations
+  validate :station_name, :presence
+  validate :station_name, :format, STATION_FORMAT
+  validate :station_name, :type, String
 
   @@all_stations = []
 
@@ -45,10 +55,11 @@ class Station
   def station_index(route)
     route.list_of_stations.index(self)
   end
-
+=begin
   protected
 
   def validate!
     raise 'Station name is invalid' if station_name !~ STATION_FORMAT
   end
+=end
 end

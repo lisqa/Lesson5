@@ -3,10 +3,15 @@ require_relative 'productcompany'
 require_relative 'wagon'
 require_relative 'passengerwagon'
 require_relative 'cargowagon'
+require_relative 'accessors'
+require_relative 'validation'
 
 class Train
   include ProductCompany
   include InstanceCounter
+  include Accessors
+  extend Accessors
+  include Validation
 
   attr_accessor :speed, :number, :type, :wagons, :train_station, :instance
 
@@ -14,6 +19,12 @@ class Train
 
   TRAIN_NUMBER_FORMAT = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i.freeze
   TRAIN_TYPE = /^(cargo|passenger)$/i.freeze
+
+  validations
+  validate :number, :presence
+  validate :number, :format, TRAIN_NUMBER_FORMAT
+  validate :type, :format, TRAIN_TYPE
+  validate :type, String
 
   def train_block(&block)
     @wagons.each(&block)
@@ -94,10 +105,12 @@ class Train
     station.station_index(@train_route)
   end
 
+=begin
   protected
 
   def validate!
     raise 'Number has invalid format' if number !~ TRAIN_NUMBER_FORMAT
     raise 'Type is not valid' if type !~ TRAIN_TYPE
   end
+=end
 end

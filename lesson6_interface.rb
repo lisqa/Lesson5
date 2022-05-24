@@ -8,6 +8,15 @@ require_relative 'passengerwagon'
 require_relative 'cargowagon'
 require_relative 'station'
 
+
+s1 = Station.new('1')
+puts s1.valid?
+t1 = Train.new('12345', 'cargo')
+puts t1.valid?
+s1 = Station.new(' ')
+puts s1.valid?
+
+=begin
 class TrainInterface
   def run
     train_create
@@ -63,3 +72,4 @@ Train.all.each do |train|
   puts "Train number #{train.number}"
   train.wagons.each { |wagon| wagon.putswagon(wagon) }
 end
+=end
